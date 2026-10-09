@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Family Lock</string>
+    <string name="accessibility_description">Shows a full-screen lock during the times a parent has set, and keeps it in place when other apps are opened. Family Lock only looks at which app is on screen. Nothing leaves this phone.</string>
+    <string name="admin_explanation">Stops Family Lock from being uninstalled or force-stopped without the parent PIN.</string>
+    <string name="admin_disable_warning">Turning this off removes the uninstall protection. The phone is locked until a parent enters the PIN.</string>
+
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="back">Back</string>
+    <string name="error_no_settings_screen">This phone has no such settings screen.</string>
+
+    <!-- First start -->
+    <string name="welcome_title">Welcome to Family Lock</string>
+    <string name="welcome_text">Family Lock locks this phone during the times you choose, like bedtime or homework time. Only you can unlock it or change the rules, with your parent PIN. Calls always work.</string>
+    <string name="welcome_start">Get started</string>
+    <string name="setup_pin_title">Create a parent PIN</string>
+    <string name="setup_pin_subtitle">4 to 8 digits. Pick one your child doesn\'t know.</string>
+    <string name="setup_pin_invalid">Use 4 to 8 digits.</string>
+    <string name="setup_pin_mismatch">The PINs didn\'t match. Try again.</string>
+    <string name="setup_confirm_title">Enter the PIN again</string>
+    <string name="setup_finish">Finish</string>
+    <string name="recovery_title">Your recovery code</string>
+    <string name="recovery_text">Write this code down and keep it away from your child. If you forget your PIN, type this code instead of the PIN.</string>
+    <string name="recovery_confirm">I wrote it down</string>
+    <string name="recovery_save">I wrote it down</string>
+    <string name="change_pin_title">Choose a new PIN</string>
+    <string name="change_pin_forced_title">Set a new PIN</string>
+    <string name="change_pin_forced_text">You used your recovery code. Choose a new PIN with 4 to 8 digits.</string>
+    <string name="change_pin_done">PIN changed</string>
+
+    <!-- PIN entry -->
+    <string name="gate_title">Enter parent PIN</string>
+    <string name="pin_recovery_hint">Forgot it? Type your 12-digit recovery code.</string>
+    <string name="pin_delete">Delete digit</string>
+    <string name="pin_locked_out">Too many wrong tries. Wait %1$s.</string>
+    <plurals name="pin_wrong">
+        <item quantity="one">Wrong PIN. %d more try before a short wait.</item>
+        <item quantity="other">Wrong PIN. %d more tries before a short wait.</item>
+    </plurals>
+    <string name="wait_seconds">%1$d s</string>
+    <string name="wait_minutes">%1$d min</string>
+
+    <!-- Lock screen -->
+    <string name="lock_title_schedule">Time for a break</string>
+    <string name="lock_message_schedule">%1$s. The phone unlocks at %2$s.</string>
+    <string name="lock_title_manual">Locked by a parent</string>
+    <string name="lock_message_manual_until">The phone unlocks at %1$s.</string>
+    <string name="lock_message_manual">Ask a parent to unlock it.</string>
+    <string name="lock_title_clock">Automatic date &amp; time is off</string>
+    <string name="lock_message_clock">The phone stays locked until automatic date, time and time zone are turned back on. Ask a parent.</string>
+    <string name="lock_title_tamper">Protection settings are locked</string>
+    <string name="lock_message_tamper">Someone tried to change Family Lock\'s protection. A parent PIN is needed.</string>
+    <string name="lock_phone">Phone</string>
+    <string name="lock_parent">Parent</string>
+    <string name="lock_calls_allowed">Calls can always be made and answered.</string>
+    <string name="lock_parent_pin">Parent PIN</string>
+    <string name="options_title">Parent options</string>
+    <string name="options_recovery_used">Recovery code used. Set a new PIN in parent settings.</string>
+    <string name="options_extra_time">Give extra time</string>
+    <string name="extra_15">15 min</string>
+    <string name="extra_30">30 min</string>
+    <string name="extra_60">1 hour</string>
+    <string name="options_end_lock">End this lock</string>
+    <string name="options_date_settings">Open date &amp; time settings</string>
+    <string name="options_parent_settings">Open parent settings</string>
+
+    <!-- Dashboard -->
+    <string name="dashboard_done">Done</string>
+    <string name="status_free">The phone is free</string>
+    <string name="status_next">Next lock: %1$s (%2$s)</string>
+    <string name="status_no_upcoming">No locks in the next 7 days.</string>
+    <string name="status_pass">Extra time</string>
+    <string name="status_pass_until">Free until %1$s.</string>
+    <string name="status_locked_schedule">Locked: %1$s</string>
+    <string name="status_locked_manual">Locked by you</string>
+    <string name="status_until">Until %1$s.</string>
+    <string name="status_until_unlocked">Until you unlock it.</string>
+    <string name="status_clock">Turn automatic date &amp; time back on, or switch off that rule in Settings.</string>
+    <string name="status_service_off">The lock service is off, so nothing is locked. Turn it on below.</string>
+    <string name="status_shows_when_leaving">The lock screen appears when you leave this app.</string>
+    <string name="status_end_pass">End extra time</string>
+    <string name="status_lock_now">Lock now</string>
+    <string name="protection_title">Protection</string>
+    <string name="check_service_title">Lock service</string>
+    <string name="check_service_text">Required. Settings › Accessibility › Family Lock › turn on. If the switch is greyed out, open App info › ⋮ › Allow restricted settings, then try again.</string>
+    <string name="check_turn_on">Turn on</string>
+    <string name="check_app_info">App info</string>
+    <string name="check_admin_title">Uninstall protection</string>
+    <string name="check_admin_text">Recommended. Stops the app from being uninstalled or force-stopped.</string>
+    <string name="check_notifications_title">Warnings before a lock</string>
+    <string name="check_notifications_text">Lets the app warn your child a few minutes before a lock starts.</string>
+    <string name="check_allow">Allow</string>
+    <string name="check_time_title">Automatic date &amp; time</string>
+    <string name="check_time_text">Turn on automatic date, time and time zone so the clock can\'t be turned back.</string>
+    <string name="check_open_settings">Open settings</string>
+    <string name="check_owner_title">Device owner (optional)</string>
+    <string name="check_owner_text">Extra strong: blocks safe mode, factory reset and extra users. Needs a computer, see the README.</string>
+    <string name="check_owner_done">On. Safe mode, factory reset and extra users are blocked.</string>
+    <string name="check_done">On</string>
+    <string name="schedules_title">Schedules</string>
+    <string name="schedules_empty">No schedules yet. Add one, for example Bedtime 21:00–07:00.</string>
+    <string name="schedules_add">Add schedule</string>
+    <string name="allowed_title">Allowed during locks</string>
+    <string name="allowed_summary_none">Only the phone app</string>
+    <plurals name="allowed_summary">
+        <item quantity="one">Phone and %d other app</item>
+        <item quantity="other">Phone and %d other apps</item>
+    </plurals>
+    <string name="allowed_text">The phone app always works, so your child can call you. Pick other apps that may be used during a lock, for example Messages or a school app.</string>
+    <string name="allowed_phone">Phone</string>
+    <string name="allowed_phone_always">Always allowed</string>
+    <string name="lock_now_title">Lock now</string>
+    <string name="lock_now_text">How long should the phone stay locked?</string>
+    <string name="lock_now_30">30 minutes</string>
+    <string name="lock_now_60">1 hour</string>
+    <string name="lock_now_120">2 hours</string>
+    <string name="lock_now_until_unlock">Until I unlock it</string>
+
+    <!-- Schedule editor -->
+    <string name="editor_new_title">New schedule</string>
+    <string name="editor_edit_title">Edit schedule</string>
+    <string name="editor_default_name">Bedtime</string>
+    <string name="editor_name">Name</string>
+    <string name="editor_from">From</string>
+    <string name="editor_until">Until</string>
+    <string name="editor_hint_all_day">Locked for the whole day.</string>
+    <string name="editor_hint_overnight">Runs past midnight and ends the next morning.</string>
+    <string name="editor_hint_same_day">Starts and ends on the same day.</string>
+    <string name="editor_days">Days it starts on</string>
+    <string name="editor_pick_day">Pick at least one day.</string>
+    <string name="editor_save">Save</string>
+    <string name="editor_delete">Delete</string>
+    <string name="editor_delete_title">Delete \"%1$s\"?</string>
+    <string name="days_every_day">Every day</string>
+    <string name="days_weekdays">Weekdays</string>
+    <string name="days_weekend">Weekends</string>
+    <string name="days_none">No days</string>
+    <string name="schedule_all_day">All day</string>
+    <string name="schedule_next_day">%1$s (next day)</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_security">Security</string>
+    <string name="settings_change_pin">Change PIN</string>
+    <string name="settings_new_recovery">New recovery code</string>
+    <string name="settings_new_recovery_text">The old code stops working.</string>
+    <string name="settings_warning">Warning before a lock</string>
+    <string name="settings_warning_text">Show a notification before a scheduled lock starts.</string>
+    <string name="settings_warning_off">Off</string>
+    <string name="settings_warning_minutes">%1$d min</string>
+    <string name="settings_auto_time">Require automatic date &amp; time</string>
+    <string name="settings_auto_time_text">Lock the phone while automatic date, time or time zone is off, so the clock can\'t be turned back to skip a lock.</string>
+    <string name="settings_remove_section">Remove Family Lock</string>
+    <string name="settings_remove_text">Turns off uninstall protection so you can uninstall the app.</string>
+    <string name="settings_remove">Remove protection</string>
+    <string name="settings_remove_confirm_title">Remove protection?</string>
+    <string name="settings_remove_confirm_text">Your child will be able to uninstall Family Lock until you turn protection on again.</string>
+    <string name="settings_removed_text">Protection is off. You can uninstall the app now.</string>
+    <string name="settings_uninstall">Uninstall</string>
+    <string name="settings_version">Version %1$s</string>
+
+    <!-- Notifications -->
+    <string name="warning_channel">Lock warnings</string>
+    <string name="warning_title">The phone locks at %1$s</string>
+    <string name="warning_text">%1$s starts soon. Finish up what you are doing.</string>
+</resources>
