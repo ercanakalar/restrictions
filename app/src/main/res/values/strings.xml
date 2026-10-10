@@ -24,6 +24,9 @@
     <string name="recovery_text">Write this code down and keep it away from your child. If you forget your PIN, type this code instead of the PIN.</string>
     <string name="recovery_confirm">I wrote it down</string>
     <string name="recovery_save">I wrote it down</string>
+    <string name="recovery_copy">Copy</string>
+    <string name="recovery_tap_to_copy">Tap the code to copy it. Don\'t save it on this phone, where your child could find it.</string>
+    <string name="recovery_copied">Recovery code copied</string>
     <string name="change_pin_title">Choose a new PIN</string>
     <string name="change_pin_forced_title">Set a new PIN</string>
     <string name="change_pin_forced_text">You used your recovery code. Choose a new PIN with 4 to 8 digits.</string>

@@ -24,6 +24,9 @@
     <string name="recovery_text">Bu kodu bir yere yazın ve çocuğunuzdan uzak tutun. PIN\'inizi unutursanız PIN yerine bu kodu yazın.</string>
     <string name="recovery_confirm">Kodu bir yere yazdım</string>
     <string name="recovery_save">Kodu bir yere yazdım</string>
+    <string name="recovery_copy">Kopyala</string>
+    <string name="recovery_tap_to_copy">Kopyalamak için koda dokunun. Çocuğunuzun bulabileceği bu telefona kaydetmeyin.</string>
+    <string name="recovery_copied">Kurtarma kodu kopyalandı</string>
     <string name="change_pin_title">Yeni bir PIN seçin</string>
     <string name="change_pin_forced_title">Yeni PIN belirleyin</string>
     <string name="change_pin_forced_text">Kurtarma kodunuzu kullandınız. 4 ila 8 rakamlı yeni bir PIN seçin.</string>

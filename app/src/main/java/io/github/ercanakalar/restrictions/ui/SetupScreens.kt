@@ -1,7 +1,15 @@
 package io.github.ercanakalar.restrictions.ui
 
+import android.content.ClipData
+import android.content.ClipDescription
+import android.content.ClipboardManager
+import android.content.Context
+import android.os.Build
+import android.os.PersistableBundle
 import android.widget.Toast
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -25,6 +33,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
@@ -153,13 +162,43 @@ fun RecoveryCodeContent(code: String, buttonLabel: String, onConfirmed: () -> Un
 
 @Composable
 fun RecoveryCodeBox(code: String) {
-    Surface(shape = MaterialTheme.shapes.medium, color = MaterialTheme.colorScheme.secondaryContainer) {
+    val context = LocalContext.current
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Surface(
+            shape = MaterialTheme.shapes.medium,
+            color = MaterialTheme.colorScheme.secondaryContainer,
+            modifier = Modifier
+                .clip(MaterialTheme.shapes.medium)
+                .clickable(onClickLabel = stringResource(R.string.recovery_copy)) { copyRecoveryCode(context, code) },
+        ) {
+            Text(
+                Secrets.formatRecoveryCode(code),
+                style = MaterialTheme.typography.headlineSmall,
+                fontFamily = FontFamily.Monospace,
+                modifier = Modifier.padding(horizontal = 24.dp, vertical = 16.dp),
+            )
+        }
+        Spacer(Modifier.height(8.dp))
         Text(
-            Secrets.formatRecoveryCode(code),
-            style = MaterialTheme.typography.headlineSmall,
-            fontFamily = FontFamily.Monospace,
-            modifier = Modifier.padding(horizontal = 24.dp, vertical = 16.dp),
+            stringResource(R.string.recovery_tap_to_copy),
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.widthIn(max = 420.dp),
         )
+    }
+}
+
+private fun copyRecoveryCode(context: Context, code: String) {
+    val clip = ClipData.newPlainText(context.getString(R.string.recovery_title), Secrets.formatRecoveryCode(code))
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        // Keeps the code out of clipboard previews and keyboard suggestions.
+        clip.description.extras = PersistableBundle().apply { putBoolean(ClipDescription.EXTRA_IS_SENSITIVE, true) }
+    }
+    context.getSystemService(ClipboardManager::class.java).setPrimaryClip(clip)
+    // Android 13+ shows its own confirmation when something is copied.
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+        Toast.makeText(context, R.string.recovery_copied, Toast.LENGTH_SHORT).show()
     }
 }
 
