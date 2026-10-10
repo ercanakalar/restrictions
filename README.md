@@ -14,6 +14,7 @@ time. Only the parent can unlock it or change the rules, using a PIN on the chil
 - **Lock now.** Lock the phone right away for 30 minutes, 1 hour, 2 hours, or until you unlock it.
 - **Calls always work.** The phone app, the emergency dialer and incoming calls are never blocked.
 - **Allowed apps.** Pick other apps that still work during a lock, for example Messages or a school app.
+  They are shown as buttons on the lock screen, so the child can open them from there.
 - **Warning before a lock.** The child gets a notification 5, 10 or 15 minutes before a lock starts.
 - **Recovery code.** A 12-digit code is shown once during setup. If you forget your PIN, type the
   code instead.

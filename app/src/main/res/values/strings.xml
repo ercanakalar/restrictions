@@ -54,6 +54,7 @@
     <string name="lock_phone">Phone</string>
     <string name="lock_parent">Parent</string>
     <string name="lock_calls_allowed">Calls can always be made and answered.</string>
+    <string name="lock_allowed_apps">Apps you can use now</string>
     <string name="lock_parent_pin">Parent PIN</string>
     <string name="options_title">Parent options</string>
     <string name="options_recovery_used">Recovery code used. Set a new PIN in parent settings.</string>
@@ -107,7 +108,7 @@
         <item quantity="one">Phone and %d other app</item>
         <item quantity="other">Phone and %d other apps</item>
     </plurals>
-    <string name="allowed_text">The phone app always works, so your child can call you. Pick other apps that may be used during a lock, for example Messages or a school app.</string>
+    <string name="allowed_text">The phone app always works, so your child can call you. Pick other apps that may be used during a lock, for example Messages or a school app. They are shown on the lock screen, so your child can open them from there.</string>
     <string name="allowed_phone">Phone</string>
     <string name="allowed_phone_always">Always allowed</string>
     <string name="lock_now_title">Lock now</string>

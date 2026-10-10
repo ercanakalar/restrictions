@@ -1,10 +1,5 @@
 package io.github.ercanakalar.restrictions.ui
 
-import android.content.Context
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.content.pm.ResolveInfo
-import android.os.Build
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -36,20 +31,15 @@ import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
-import androidx.core.graphics.drawable.toBitmap
 import io.github.ercanakalar.restrictions.R
 import io.github.ercanakalar.restrictions.data.AppPrefs
 import io.github.ercanakalar.restrictions.guard.DeviceState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-
-private class AppEntry(val packageName: String, val label: String, val icon: ImageBitmap?)
 
 /** Apps the child may still use during a lock, e.g. messages or a school app. */
 @OptIn(ExperimentalMaterial3Api::class)
@@ -126,33 +116,5 @@ fun AllowedAppsScreen(prefs: AppPrefs, onDone: () -> Unit) {
                 }
             }
         }
-    }
-}
-
-private fun loadLaunchableApps(context: Context, hidden: Set<String>): List<AppEntry> {
-    val pm = context.packageManager
-    val iconSize = (40 * context.resources.displayMetrics.density).toInt()
-    return queryLauncherActivities(pm)
-        .map { it.activityInfo.applicationInfo }
-        .distinctBy { it.packageName }
-        .filter { it.packageName !in hidden }
-        .map { info ->
-            val icon = try {
-                pm.getApplicationIcon(info).toBitmap(iconSize, iconSize).asImageBitmap()
-            } catch (e: RuntimeException) {
-                null
-            }
-            AppEntry(info.packageName, pm.getApplicationLabel(info).toString(), icon)
-        }
-        .sortedBy { it.label.lowercase() }
-}
-
-private fun queryLauncherActivities(pm: PackageManager): List<ResolveInfo> {
-    val intent = Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_LAUNCHER)
-    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-        pm.queryIntentActivities(intent, PackageManager.ResolveInfoFlags.of(0))
-    } else {
-        @Suppress("DEPRECATION")
-        pm.queryIntentActivities(intent, 0)
     }
 }

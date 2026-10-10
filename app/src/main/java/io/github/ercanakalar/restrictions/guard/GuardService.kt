@@ -206,6 +206,13 @@ class GuardService : AccessibilityService(), LockScreenActions {
         launch(Intent(Intent.ACTION_DIAL))
     }
 
+    override fun allowedPackages(): Set<String> = prefs.allowedPackages
+
+    override fun openApp(packageName: String) {
+        if (packageName !in prefs.allowedPackages) return
+        packageManager.getLaunchIntentForPackage(packageName)?.let(::launch)
+    }
+
     private fun launch(intent: Intent) {
         try {
             startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))

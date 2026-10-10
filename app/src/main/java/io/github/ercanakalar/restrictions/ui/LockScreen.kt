@@ -1,8 +1,12 @@
 package io.github.ercanakalar.restrictions.ui
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
@@ -31,18 +35,23 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import io.github.ercanakalar.restrictions.R
 import io.github.ercanakalar.restrictions.core.LockDecision
 import io.github.ercanakalar.restrictions.core.LockReason
 import io.github.ercanakalar.restrictions.data.PinResult
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 /** What the buttons on the lock screen do; implemented by the lock service. */
 interface LockScreenActions {
@@ -54,6 +63,10 @@ interface LockScreenActions {
     fun openParentSettings()
     fun openDateSettings()
     fun openPhone()
+
+    /** Apps the parent allowed during locks; they are offered on the lock screen. */
+    fun allowedPackages(): Set<String>
+    fun openApp(packageName: String)
 }
 
 private enum class Stage { INFO, PIN, OPTIONS }
@@ -79,6 +92,8 @@ fun LockScreen(decision: LockDecision.Locked, actions: LockScreenActions) {
                 when (stage) {
                     Stage.INFO -> LockInfo(
                         decision = decision,
+                        allowedPackages = actions::allowedPackages,
+                        onOpenApp = actions::openApp,
                         onPhone = actions::openPhone,
                         onParent = { stage = Stage.PIN },
                     )
@@ -109,10 +124,22 @@ fun LockScreen(decision: LockDecision.Locked, actions: LockScreenActions) {
     }
 }
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
-private fun LockInfo(decision: LockDecision.Locked, onPhone: () -> Unit, onParent: () -> Unit) {
+private fun LockInfo(
+    decision: LockDecision.Locked,
+    allowedPackages: () -> Set<String>,
+    onOpenApp: (String) -> Unit,
+    onPhone: () -> Unit,
+    onParent: () -> Unit,
+) {
     val context = LocalContext.current
     val now by rememberNow()
+    // The lock covers the home screen, so allowed apps can only be started from here.
+    val allowedApps by produceState(emptyList<AppEntry>()) {
+        val packages = allowedPackages()
+        if (packages.isNotEmpty()) value = withContext(Dispatchers.Default) { loadApps(context, packages) }
+    }
     val until = decision.untilMillis?.let { formatClock(context, it) }
     val title: String
     val message: String
@@ -175,12 +202,52 @@ private fun LockInfo(decision: LockDecision.Locked, onPhone: () -> Unit, onParen
                 Text(stringResource(R.string.lock_parent))
             }
         }
+        if (decision.reason != LockReason.TAMPER && allowedApps.isNotEmpty()) {
+            Spacer(Modifier.height(24.dp))
+            Text(stringResource(R.string.lock_allowed_apps), style = MaterialTheme.typography.titleSmall)
+            Spacer(Modifier.height(8.dp))
+            FlowRow(
+                horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                for (app in allowedApps) {
+                    AppTile(app, onClick = { onOpenApp(app.packageName) })
+                }
+            }
+        }
         Spacer(Modifier.height(16.dp))
         Text(
             stringResource(R.string.lock_calls_allowed),
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             textAlign = TextAlign.Center,
+        )
+    }
+}
+
+@Composable
+private fun AppTile(app: AppEntry, onClick: () -> Unit) {
+    Column(
+        modifier = Modifier
+            .width(88.dp)
+            .clip(MaterialTheme.shapes.medium)
+            .clickable(onClick = onClick)
+            .padding(8.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        val icon = app.icon
+        if (icon != null) {
+            Image(icon, contentDescription = null, modifier = Modifier.size(48.dp))
+        } else {
+            Spacer(Modifier.size(48.dp))
+        }
+        Spacer(Modifier.height(4.dp))
+        Text(
+            app.label,
+            style = MaterialTheme.typography.labelMedium,
+            textAlign = TextAlign.Center,
+            maxLines = 2,
+            overflow = TextOverflow.Ellipsis,
         )
     }
 }
