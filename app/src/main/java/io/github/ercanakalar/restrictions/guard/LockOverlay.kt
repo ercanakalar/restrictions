@@ -19,6 +19,7 @@ import androidx.savedstate.SavedStateRegistryController
 import androidx.savedstate.SavedStateRegistryOwner
 import androidx.savedstate.setViewTreeSavedStateRegistryOwner
 import io.github.ercanakalar.restrictions.core.LockDecision
+import io.github.ercanakalar.restrictions.data.AppLanguage
 import io.github.ercanakalar.restrictions.ui.LockScreen
 import io.github.ercanakalar.restrictions.ui.LockScreenActions
 import io.github.ercanakalar.restrictions.ui.theme.AppTheme
@@ -51,7 +52,7 @@ internal class LockOverlay(
         if (view != null) return
 
         val newOwner = OverlayLifecycleOwner()
-        val newView = ComposeView(context).apply {
+        val newView = ComposeView(AppLanguage.wrap(context)).apply {
             setViewTreeLifecycleOwner(newOwner)
             setViewTreeSavedStateRegistryOwner(newOwner)
             setContent {

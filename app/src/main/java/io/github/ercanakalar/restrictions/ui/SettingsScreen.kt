@@ -2,6 +2,8 @@ package io.github.ercanakalar.restrictions.ui
 
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
+import androidx.activity.compose.LocalActivity
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -47,7 +49,9 @@ import androidx.compose.ui.unit.dp
 import io.github.ercanakalar.restrictions.BuildConfig
 import io.github.ercanakalar.restrictions.R
 import io.github.ercanakalar.restrictions.core.Secrets
+import io.github.ercanakalar.restrictions.data.AppLanguage
 import io.github.ercanakalar.restrictions.data.AppPrefs
+import io.github.ercanakalar.restrictions.guard.ParentSession
 import io.github.ercanakalar.restrictions.guard.Protection
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
@@ -62,6 +66,8 @@ fun SettingsScreen(
     val revision by prefs.revision.collectAsState()
     val warnMinutes = remember(revision) { prefs.warnMinutes }
     val requireAutoTime = remember(revision) { prefs.requireAutoTime }
+    val activity = LocalActivity.current
+    val selectedLanguage = remember(revision) { AppLanguage.selected(context) }
     var newRecoveryCode by remember { mutableStateOf<String?>(null) }
     var confirmRemove by remember { mutableStateOf(false) }
     var removed by remember { mutableStateOf(false) }
@@ -87,6 +93,33 @@ fun SettingsScreen(
                 .verticalScroll(rememberScrollState())
                 .padding(vertical = 8.dp),
         ) {
+            SectionTitle(stringResource(R.string.settings_language))
+            FlowRow(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+            ) {
+                val choices = listOf(
+                    null to stringResource(R.string.settings_language_system),
+                    "en" to stringResource(R.string.language_en),
+                    "tr" to stringResource(R.string.language_tr),
+                )
+                for ((tag, label) in choices) {
+                    FilterChip(
+                        selected = selectedLanguage == tag,
+                        onClick = {
+                            if (selectedLanguage != tag) {
+                                // The screen is rebuilt in the new language; don't ask for the PIN again.
+                                ParentSession.grant()
+                                AppLanguage.select(context, tag)
+                                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) activity?.recreate()
+                            }
+                        },
+                        label = { Text(label) },
+                    )
+                }
+            }
+            HorizontalDivider()
+
             SectionTitle(stringResource(R.string.settings_security))
             ListItem(
                 headlineContent = { Text(stringResource(R.string.settings_change_pin)) },

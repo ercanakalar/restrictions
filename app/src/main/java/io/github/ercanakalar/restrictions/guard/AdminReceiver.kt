@@ -4,6 +4,7 @@ import android.app.admin.DeviceAdminReceiver
 import android.content.Context
 import android.content.Intent
 import io.github.ercanakalar.restrictions.R
+import io.github.ercanakalar.restrictions.data.AppLanguage
 import io.github.ercanakalar.restrictions.data.AppPrefs
 
 /**
@@ -18,6 +19,6 @@ class AdminReceiver : DeviceAdminReceiver() {
 
     override fun onDisableRequested(context: Context, intent: Intent): CharSequence {
         AppPrefs.get(context).triggerTamperLock()
-        return context.getString(R.string.admin_disable_warning)
+        return AppLanguage.wrap(context).getString(R.string.admin_disable_warning)
     }
 }

@@ -120,11 +120,11 @@ fun ScheduleEditorScreen(prefs: AppPrefs, scheduleId: String?, onDone: () -> Uni
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalArrangement = Arrangement.spacedBy(4.dp),
             ) {
-                for (day in orderedWeek()) {
+                for (day in orderedWeek(context)) {
                     FilterChip(
                         selected = day in days,
                         onClick = { days = if (day in days) days - day else days + day },
-                        label = { Text(dayShortName(day)) },
+                        label = { Text(dayShortName(context, day)) },
                     )
                 }
             }

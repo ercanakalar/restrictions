@@ -16,6 +16,9 @@ time. Only the parent can unlock it or change the rules, using a PIN on the chil
 - **Allowed apps.** Pick other apps that still work during a lock, for example Messages or a school app.
   They are shown as buttons on the lock screen, so the child can open them from there.
 - **Warning before a lock.** The child gets a notification 5, 10 or 15 minutes before a lock starts.
+- **English and Turkish.** The app follows the phone's language. A parent can also pick
+  English or Türkçe in the app's *Settings › Language*. On Android 13 and newer this also
+  appears in the phone's own settings under *Apps › Family Lock › Language*.
 - **Recovery code.** A 12-digit code is shown once during setup. If you forget your PIN, type the
   code instead.
 - **Protection against getting around it:**
@@ -135,4 +138,3 @@ The `core` package is plain Kotlin, and its unit tests run on the JVM:
 - Daily screen-time allowance (for example 2 hours a day) on top of schedules.
 - A parent app on the parent's own phone for remote lock, unlock and extra time.
 - Usage report: which apps were used and for how long.
-- Turkish translation (all texts are already in `res/values/strings.xml`).

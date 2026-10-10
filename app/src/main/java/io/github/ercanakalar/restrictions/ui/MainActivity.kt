@@ -1,6 +1,7 @@
 package io.github.ercanakalar.restrictions.ui
 
 import android.content.ActivityNotFoundException
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -11,6 +12,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import io.github.ercanakalar.restrictions.R
+import io.github.ercanakalar.restrictions.data.AppLanguage
 import io.github.ercanakalar.restrictions.data.AppPrefs
 import io.github.ercanakalar.restrictions.guard.ParentSession
 import io.github.ercanakalar.restrictions.ui.theme.AppTheme
@@ -19,6 +21,10 @@ import io.github.ercanakalar.restrictions.ui.theme.AppTheme
 class MainActivity : ComponentActivity() {
 
     private var parentUnlocked by mutableStateOf(false)
+
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(AppLanguage.wrap(newBase))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

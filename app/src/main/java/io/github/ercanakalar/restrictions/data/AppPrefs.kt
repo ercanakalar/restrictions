@@ -193,6 +193,11 @@ class AppPrefs private constructor(context: Context) {
         get() = prefs.getBoolean(KEY_REQUIRE_AUTO_TIME, true)
         set(value) = prefs.edit { putBoolean(KEY_REQUIRE_AUTO_TIME, value) }
 
+    /** App language before Android 13 (see [AppLanguage]); null follows the phone. */
+    var language: String?
+        get() = prefs.getString(KEY_LANGUAGE, null)
+        set(value) = prefs.edit { putString(KEY_LANGUAGE, value) }
+
     fun lockInputs(nowMillis: Long, zone: ZoneId, autoTimeEnabled: Boolean) = LockInputs(
         nowMillis = nowMillis,
         zone = zone,
@@ -219,6 +224,7 @@ class AppPrefs private constructor(context: Context) {
         private const val KEY_TAMPER_GRACE_UNTIL = "tamper_grace_until"
         private const val KEY_WARN_MINUTES = "warn_minutes"
         private const val KEY_REQUIRE_AUTO_TIME = "require_auto_time"
+        private const val KEY_LANGUAGE = "language"
 
         const val TAMPER_GRACE_MILLIS = 5 * 60_000L
 

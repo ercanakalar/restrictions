@@ -21,6 +21,7 @@ import io.github.ercanakalar.restrictions.R
 import io.github.ercanakalar.restrictions.core.LockDecision
 import io.github.ercanakalar.restrictions.core.LockPolicy
 import io.github.ercanakalar.restrictions.core.LockReason
+import io.github.ercanakalar.restrictions.data.AppLanguage
 import io.github.ercanakalar.restrictions.data.AppPrefs
 import io.github.ercanakalar.restrictions.data.PinResult
 import io.github.ercanakalar.restrictions.ui.LockScreenActions
@@ -44,6 +45,7 @@ class GuardService : AccessibilityService(), LockScreenActions {
     private var transientPackages: Set<String> = emptySet()
     private var lastWarnedStart = 0L
     private var stopCallModeWatcher: (() -> Unit)? = null
+    private var appLabels: List<String> = emptyList()
 
     private val refreshRunnable = Runnable { refresh() }
     private val prefsListener: () -> Unit = { requestRefresh() }
@@ -72,6 +74,7 @@ class GuardService : AccessibilityService(), LockScreenActions {
         prefs = AppPrefs.get(this)
         overlay = LockOverlay(this, this)
         transientPackages = findTransientPackages()
+        appLabels = AppLanguage.SUPPORTED.map { AppLanguage.localized(this, it).getString(R.string.app_name) }.distinct()
         prefs.addListener(prefsListener)
 
         val filter = IntentFilter().apply {
@@ -154,7 +157,7 @@ class GuardService : AccessibilityService(), LockScreenActions {
         val start = LockPolicy.toMillis(next.start, zone)
         if (start == lastWarnedStart) return
         lastWarnedStart = start
-        Notifications.showLockWarning(this, next.schedule.name, start)
+        Notifications.showLockWarning(AppLanguage.wrap(this), next.schedule.name, start)
     }
 
     /**
@@ -165,8 +168,8 @@ class GuardService : AccessibilityService(), LockScreenActions {
         if (!pkg.contains("settings", ignoreCase = true) && !pkg.contains("accessibility", ignoreCase = true)) {
             return false
         }
-        val label = getString(R.string.app_name)
-        return event.text.any { it?.contains(label, ignoreCase = true) == true }
+        // Settings shows the app's name in the phone's language, so check every translation.
+        return event.text.any { text -> appLabels.any { text?.contains(it, ignoreCase = true) == true } }
     }
 
     private fun findTransientPackages(): Set<String> {

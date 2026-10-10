@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Aile Kilidi</string>
+    <string name="accessibility_description">Ebeveynin belirlediği saatlerde tam ekran bir kilit gösterir ve başka uygulamalar açılsa bile kilidi yerinde tutar. Aile Kilidi yalnızca ekranda hangi uygulamanın açık olduğuna bakar. Hiçbir bilgi bu telefondan dışarı gönderilmez.</string>
+    <string name="admin_explanation">Aile Kilidi\'nin ebeveyn PIN\'i olmadan kaldırılmasını veya zorla durdurulmasını engeller.</string>
+    <string name="admin_disable_warning">Bunu kapatmak kaldırma korumasını devre dışı bırakır. Bir ebeveyn PIN\'i girene kadar telefon kilitli kalır.</string>
+
+    <string name="ok">Tamam</string>
+    <string name="cancel">İptal</string>
+    <string name="back">Geri</string>
+    <string name="error_no_settings_screen">Bu telefonda böyle bir ayar ekranı yok.</string>
+
+    <!-- First start -->
+    <string name="welcome_title">Aile Kilidi\'ne hoş geldiniz</string>
+    <string name="welcome_text">Aile Kilidi bu telefonu yatma saati veya ödev saati gibi seçtiğiniz zamanlarda kilitler. Kilidi yalnızca siz, ebeveyn PIN\'inizle açabilir ve kuralları değiştirebilirsiniz. Aramalar her zaman çalışır.</string>
+    <string name="welcome_start">Başla</string>
+    <string name="setup_pin_title">Ebeveyn PIN\'i oluşturun</string>
+    <string name="setup_pin_subtitle">4 ila 8 rakam. Çocuğunuzun bilmediği bir PIN seçin.</string>
+    <string name="setup_pin_invalid">4 ila 8 rakam kullanın.</string>
+    <string name="setup_pin_mismatch">PIN\'ler eşleşmedi. Tekrar deneyin.</string>
+    <string name="setup_confirm_title">PIN\'i tekrar girin</string>
+    <string name="setup_finish">Bitir</string>
+    <string name="recovery_title">Kurtarma kodunuz</string>
+    <string name="recovery_text">Bu kodu bir yere yazın ve çocuğunuzdan uzak tutun. PIN\'inizi unutursanız PIN yerine bu kodu yazın.</string>
+    <string name="recovery_confirm">Kodu bir yere yazdım</string>
+    <string name="recovery_save">Kodu bir yere yazdım</string>
+    <string name="change_pin_title">Yeni bir PIN seçin</string>
+    <string name="change_pin_forced_title">Yeni PIN belirleyin</string>
+    <string name="change_pin_forced_text">Kurtarma kodunuzu kullandınız. 4 ila 8 rakamlı yeni bir PIN seçin.</string>
+    <string name="change_pin_done">PIN değiştirildi</string>
+
+    <!-- PIN entry -->
+    <string name="gate_title">Ebeveyn PIN\'ini girin</string>
+    <string name="pin_recovery_hint">Unuttunuz mu? 12 haneli kurtarma kodunuzu yazın.</string>
+    <string name="pin_delete">Rakamı sil</string>
+    <string name="pin_locked_out">Çok fazla yanlış deneme. %1$s bekleyin.</string>
+    <plurals name="pin_wrong">
+        <item quantity="one">Yanlış PIN. Kısa bir beklemeden önce %d deneme hakkı kaldı.</item>
+        <item quantity="other">Yanlış PIN. Kısa bir beklemeden önce %d deneme hakkı kaldı.</item>
+    </plurals>
+    <string name="wait_seconds">%1$d sn</string>
+    <string name="wait_minutes">%1$d dk</string>
+
+    <!-- Lock screen -->
+    <string name="lock_title_schedule">Mola zamanı</string>
+    <string name="lock_message_schedule">%1$s. Kilidin açılacağı saat: %2$s.</string>
+    <string name="lock_title_manual">Bir ebeveyn kilitledi</string>
+    <string name="lock_message_manual_until">Kilidin açılacağı saat: %1$s.</string>
+    <string name="lock_message_manual">Kilidi açması için bir ebeveynine sor.</string>
+    <string name="lock_title_clock">Otomatik tarih ve saat kapalı</string>
+    <string name="lock_message_clock">Otomatik tarih, saat ve saat dilimi yeniden açılana kadar telefon kilitli kalır. Bir ebeveynine sor.</string>
+    <string name="lock_title_tamper">Koruma ayarları kilitli</string>
+    <string name="lock_message_tamper">Biri Aile Kilidi\'nin korumasını değiştirmeye çalıştı. Ebeveyn PIN\'i gerekiyor.</string>
+    <string name="lock_phone">Telefon</string>
+    <string name="lock_parent">Ebeveyn</string>
+    <string name="lock_calls_allowed">Aramalar her zaman yapılabilir ve yanıtlanabilir.</string>
+    <string name="lock_allowed_apps">Şu an kullanabileceğin uygulamalar</string>
+    <string name="lock_parent_pin">Ebeveyn PIN\'i</string>
+    <string name="options_title">Ebeveyn seçenekleri</string>
+    <string name="options_recovery_used">Kurtarma kodu kullanıldı. Ebeveyn ayarlarından yeni bir PIN belirleyin.</string>
+    <string name="options_extra_time">Ek süre ver</string>
+    <string name="extra_15">15 dk</string>
+    <string name="extra_30">30 dk</string>
+    <string name="extra_60">1 saat</string>
+    <string name="options_end_lock">Bu kilidi bitir</string>
+    <string name="options_date_settings">Tarih ve saat ayarlarını aç</string>
+    <string name="options_parent_settings">Ebeveyn ayarlarını aç</string>
+
+    <!-- Dashboard -->
+    <string name="dashboard_done">Bitti</string>
+    <string name="status_free">Telefon serbest</string>
+    <string name="status_next">Sonraki kilit: %1$s (%2$s)</string>
+    <string name="status_no_upcoming">Önümüzdeki 7 gün içinde kilit yok.</string>
+    <string name="status_pass">Ek süre</string>
+    <string name="status_pass_until">Serbest süre bitişi: %1$s.</string>
+    <string name="status_locked_schedule">Kilitli: %1$s</string>
+    <string name="status_locked_manual">Sizin tarafınızdan kilitlendi</string>
+    <string name="status_until">Bitiş: %1$s.</string>
+    <string name="status_until_unlocked">Siz açana kadar.</string>
+    <string name="status_clock">Otomatik tarih ve saati yeniden açın veya bu kuralı Ayarlar\'dan kapatın.</string>
+    <string name="status_service_off">Kilit hizmeti kapalı, bu yüzden hiçbir şey kilitlenmiyor. Aşağıdan açın.</string>
+    <string name="status_shows_when_leaving">Kilit ekranı bu uygulamadan çıktığınızda görünür.</string>
+    <string name="status_end_pass">Ek süreyi bitir</string>
+    <string name="status_lock_now">Şimdi kilitle</string>
+    <string name="protection_title">Koruma</string>
+    <string name="check_service_title">Kilit hizmeti</string>
+    <string name="check_service_text">Gerekli. Ayarlar › Erişilebilirlik › Aile Kilidi › açın. Anahtar gri görünüyorsa Uygulama bilgileri › ⋮ › Kısıtlanmış ayarlara izin ver\'e dokunun ve tekrar deneyin.</string>
+    <string name="check_turn_on">Aç</string>
+    <string name="check_app_info">Uygulama bilgileri</string>
+    <string name="check_admin_title">Kaldırma koruması</string>
+    <string name="check_admin_text">Önerilir. Uygulamanın kaldırılmasını veya zorla durdurulmasını engeller.</string>
+    <string name="check_notifications_title">Kilit öncesi uyarılar</string>
+    <string name="check_notifications_text">Uygulamanın, kilit başlamadan birkaç dakika önce çocuğunuzu uyarmasını sağlar.</string>
+    <string name="check_allow">İzin ver</string>
+    <string name="check_time_title">Otomatik tarih ve saat</string>
+    <string name="check_time_text">Saatin geri alınamaması için otomatik tarih, saat ve saat dilimini açın.</string>
+    <string name="check_open_settings">Ayarları aç</string>
+    <string name="check_owner_title">Cihaz sahibi (isteğe bağlı)</string>
+    <string name="check_owner_text">Ekstra güçlü koruma: güvenli modu, fabrika ayarlarına sıfırlamayı ve ek kullanıcıları engeller. Bilgisayar gerekir, README dosyasına bakın.</string>
+    <string name="check_owner_done">Açık. Güvenli mod, fabrika ayarlarına sıfırlama ve ek kullanıcılar engellendi.</string>
+    <string name="check_done">Açık</string>
+    <string name="schedules_title">Programlar</string>
+    <string name="schedules_empty">Henüz program yok. Örneğin 21:00–07:00 arası bir Yatma saati ekleyin.</string>
+    <string name="schedules_add">Program ekle</string>
+    <string name="allowed_title">Kilit sırasında izin verilenler</string>
+    <string name="allowed_summary_none">Yalnızca telefon uygulaması</string>
+    <plurals name="allowed_summary">
+        <item quantity="one">Telefon ve %d uygulama daha</item>
+        <item quantity="other">Telefon ve %d uygulama daha</item>
+    </plurals>
+    <string name="allowed_text">Telefon uygulaması her zaman çalışır, böylece çocuğunuz sizi arayabilir. Kilit sırasında kullanılabilecek başka uygulamalar seçin, örneğin Mesajlar veya bir okul uygulaması. Bunlar kilit ekranında gösterilir ve çocuğunuz onları oradan açabilir.</string>
+    <string name="allowed_phone">Telefon</string>
+    <string name="allowed_phone_always">Her zaman izinli</string>
+    <string name="lock_now_title">Şimdi kilitle</string>
+    <string name="lock_now_text">Telefon ne kadar süre kilitli kalsın?</string>
+    <string name="lock_now_30">30 dakika</string>
+    <string name="lock_now_60">1 saat</string>
+    <string name="lock_now_120">2 saat</string>
+    <string name="lock_now_until_unlock">Ben açana kadar</string>
+
+    <!-- Schedule editor -->
+    <string name="editor_new_title">Yeni program</string>
+    <string name="editor_edit_title">Programı düzenle</string>
+    <string name="editor_default_name">Yatma saati</string>
+    <string name="editor_name">Ad</string>
+    <string name="editor_from">Başlangıç</string>
+    <string name="editor_until">Bitiş</string>
+    <string name="editor_hint_all_day">Bütün gün kilitli.</string>
+    <string name="editor_hint_overnight">Gece yarısını geçer ve ertesi sabah biter.</string>
+    <string name="editor_hint_same_day">Aynı gün başlar ve biter.</string>
+    <string name="editor_days">Başladığı günler</string>
+    <string name="editor_pick_day">En az bir gün seçin.</string>
+    <string name="editor_save">Kaydet</string>
+    <string name="editor_delete">Sil</string>
+    <string name="editor_delete_title">\"%1$s\" silinsin mi?</string>
+    <string name="days_every_day">Her gün</string>
+    <string name="days_weekdays">Hafta içi</string>
+    <string name="days_weekend">Hafta sonu</string>
+    <string name="days_none">Gün seçilmedi</string>
+    <string name="schedule_all_day">Bütün gün</string>
+    <string name="schedule_next_day">%1$s (ertesi gün)</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Ayarlar</string>
+    <string name="settings_language">Dil</string>
+    <string name="settings_language_system">Telefonun dili</string>
+    <string name="settings_security">Güvenlik</string>
+    <string name="settings_change_pin">PIN\'i değiştir</string>
+    <string name="settings_new_recovery">Yeni kurtarma kodu</string>
+    <string name="settings_new_recovery_text">Eski kod artık çalışmaz.</string>
+    <string name="settings_warning">Kilit öncesi uyarı</string>
+    <string name="settings_warning_text">Programlı bir kilit başlamadan önce bildirim göster.</string>
+    <string name="settings_warning_off">Kapalı</string>
+    <string name="settings_warning_minutes">%1$d dk</string>
+    <string name="settings_auto_time">Otomatik tarih ve saat zorunlu</string>
+    <string name="settings_auto_time_text">Otomatik tarih, saat veya saat dilimi kapalıyken telefonu kilitle; böylece saat geri alınarak kilit atlatılamaz.</string>
+    <string name="settings_remove_section">Aile Kilidi\'ni kaldır</string>
+    <string name="settings_remove_text">Uygulamayı kaldırabilmeniz için kaldırma korumasını kapatır.</string>
+    <string name="settings_remove">Korumayı kaldır</string>
+    <string name="settings_remove_confirm_title">Koruma kaldırılsın mı?</string>
+    <string name="settings_remove_confirm_text">Korumayı yeniden açana kadar çocuğunuz Aile Kilidi\'ni kaldırabilir.</string>
+    <string name="settings_removed_text">Koruma kapalı. Artık uygulamayı kaldırabilirsiniz.</string>
+    <string name="settings_uninstall">Kaldır</string>
+    <string name="settings_version">Sürüm %1$s</string>
+
+    <!-- Notifications -->
+    <string name="warning_channel">Kilit uyarıları</string>
+    <string name="warning_title">Telefonun kilitleneceği saat: %1$s</string>
+    <string name="warning_text">%1$s yakında başlıyor. Yaptığın şeyi bitir.</string>
+</resources>
