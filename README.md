@@ -51,6 +51,32 @@ Open the project in Android Studio and press Run, or from a terminal:
 # APK: app/build/outputs/apk/debug/app-debug.apk
 ```
 
+### Option C: signed release APK (for sharing)
+
+Use this one when you give the app to other people. A debug APK can be inspected and changed
+over USB debugging, and only a release APK signed with the same key can be installed as an update.
+
+1. Create a keystore once and keep a backup of it. If you lose it, you can't ship updates.
+   ```bash
+   keytool -genkeypair -keystore ~/keystores/family-lock-release.jks -storetype PKCS12 \
+     -alias family-lock -keyalg RSA -keysize 4096 -validity 10000 -dname "CN=Family Lock"
+   ```
+2. Add it to `~/.gradle/gradle.properties` (not to this repository):
+   ```properties
+   familyLock.storeFile=/home/<you>/keystores/family-lock-release.jks
+   familyLock.storePassword=<password>
+   familyLock.keyAlias=family-lock
+   familyLock.keyPassword=<password>
+   ```
+3. Build:
+   ```bash
+   ./gradlew assembleRelease
+   # APK: app/build/outputs/apk/release/app-release.apk
+   ```
+
+Raise `versionCode` in `app/build.gradle.kts` for every new version you share, so it installs
+as an update.
+
 ## Setup on the child's phone
 
 1. Open **Family Lock** and tap **Get started**.

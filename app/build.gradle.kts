@@ -18,10 +18,25 @@ android {
         versionName = "0.1.0"
     }
 
+    // Release signing is read from ~/.gradle/gradle.properties so the keystore and its
+    // password never live in the repo. Without these properties the release APK is unsigned.
+    val releaseStoreFile = providers.gradleProperty("familyLock.storeFile").orNull
+    signingConfigs {
+        if (releaseStoreFile != null) {
+            create("release") {
+                storeFile = file(releaseStoreFile)
+                storePassword = providers.gradleProperty("familyLock.storePassword").get()
+                keyAlias = providers.gradleProperty("familyLock.keyAlias").get()
+                keyPassword = providers.gradleProperty("familyLock.keyPassword").get()
+            }
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            signingConfig = signingConfigs.findByName("release")
         }
     }
 
